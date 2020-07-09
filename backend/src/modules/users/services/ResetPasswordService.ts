@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { differenceInHours, isAfter } from 'date-fns';
 
 import AppError from '@shared/errors/AppError';
 
@@ -37,6 +38,12 @@ class ResetPasswordService {
 
     if (!user) {
       throw new AppError('User does not exists.');
+    }
+
+    const tokenCreatedAt = userToken.created_at;
+
+    if (differenceInHours(Date.now(), tokenCreatedAt) > 2) {
+      throw new AppError('Token expired');
     }
 
     user.password = await this.hashProvider.generateHash(password);
