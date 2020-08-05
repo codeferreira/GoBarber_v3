@@ -5,3 +5,5 @@ ormconfig.json
 
 !tmp/.gitkeep
 tmp
+
+yarn-error.log
