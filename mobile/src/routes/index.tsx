@@ -16,7 +16,7 @@ const Routes: React.FC = () => {
     );
   }
 
-  return user ? <AuthRoutes /> : <AppRoutes />;
+  return !user ? <AuthRoutes /> : <AppRoutes />;
 };
 
 export default Routes;
