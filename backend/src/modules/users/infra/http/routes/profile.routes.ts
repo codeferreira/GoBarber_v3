@@ -18,7 +18,7 @@ profileRoutes.put(
     [Segments.BODY]: {
       name: Joi.string().required(),
       email: Joi.string().email().required(),
-      old_password: Joi.string(),
+      old_password: Joi.string().allow('').optional(),
       password: Joi.string(),
       password_confirmation: Joi.string().valid(Joi.ref('password')),
     },
